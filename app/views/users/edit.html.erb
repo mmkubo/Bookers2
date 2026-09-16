@@ -1,0 +1,17 @@
+<h1>User info</h1>
+
+<%= form_with model:@user do |f| %>
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name, autofocus: true %>
+  </div>
+
+#image
+
+  <div class="field">
+    <%= f.label :introduction %><br>
+    <%= f.text_field :introduction, autofocus: true %>
+  </div>
+
+  <%= f.submit "Update User" %>
+<% end %>

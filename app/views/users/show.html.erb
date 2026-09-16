@@ -1,0 +1,35 @@
+<h1>User info</h1>
+
+#profile img
+#テーブルにする↓
+<p>name: <%= @user.name %></p>
+<p>introduction: <%= @user.introduction %></p>
+
+<%= link_to edit_user_path(@user), class: " btn btn-outline-secondary " do %>
+  <i class="fa-solid fa-user-gear"></i>
+<% end %>
+
+
+<h1>New book</h1>
+
+<%= form_with model:@book do |f| %>
+  <div class="field">
+  <%= f.label :title %><br>
+  <%= f.text_field :title %>
+  </div>
+
+  <div class="field">
+  <%= f.label :body %><br>
+  <%= f.text_field :body %>
+  </div><br>
+
+  <%= f.submit "Create Book", class: "btn", style: "background-color: #f9bc60; color: #001e1d " %>
+<% end %>
+
+
+<h1>Books</h1>
+
+#テーブルにする↓
+<p>profile_image</p>
+<p>title</p>
+<p>opinion</p>

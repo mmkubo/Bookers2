@@ -24,7 +24,49 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
+  <body class="d-flex flex-column vh-100">
+    <header>
+      <div class="container">
+        <div class="row" style="background-color: #004643">
+          <div class="col-2"></div>
+          <div class="col-1"></div>
+          <div class="col-3 offset-4">
+            <ul class="navbar-nav ms-auto">
+              <% if authenticated? %>
+                <li class="nav-item">
+                  <%= link_to user_path(Current.user.id), class: "nav-link" do %>
+                    <i class="fa-solid fa-house">Home</i>
+                  <% end %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to user_path(Current.user.id), class: "nav-link" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "ログアウト", session_path,
+                              data: { turbo_method: :delete, turbo_confirm: "ログアウトしますか？" },
+                              class: "nav-link" %>
+                </li>
+              <% else %>
+                <li class="nav-item">
+                  <%= link_to "新規登録", new_user_path, class: "nav-link" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "ログイン", new_session_path, class: "nav-link" %>
+                </li>
+              <% end %>
+            </ul>
+
+          </div>
+          <div class="col-2"></div>
+        </div>
+      </div>
+    </header>
+
+
+
+
+
+
     <%= yield %>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
