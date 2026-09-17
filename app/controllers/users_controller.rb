@@ -13,7 +13,7 @@ class UsersController < ApplicationController
       redirect_to user_path(Current.user.id), notice: "Welcome! You have signed up successfully." 
       #登録完了後、マイページへ
     else
-      render:new, status: :unprocessable_entity
+      render :new, status: :unprocessable_entity
       #エラー後、登録画面へ
     end
   end
@@ -24,13 +24,17 @@ class UsersController < ApplicationController
     @books = @user.books #ユーザーの投稿一覧
   end
 
+  def index
+    @users = User.all
+  end
+
   def edit
     @user = User.find(params[:id]) #ユーザー情報
   end
 
   def update
     @user = User.find(params[:id]) #ユーザー情報
-    if @user.update
+    if @user.update(user_params)
       redirect_to user_path(Current.user.id), notice: "You have updated user successfully." 
       #登録完了後、マイページへ
     else
@@ -39,10 +43,11 @@ class UsersController < ApplicationController
     end
   end
 
+
  private
  
   def user_params
-    params.require(:user).permit(:name, :email_address, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email_address, :password, :password_confirmation, :introduction, :profile_image)
   end
 
 end

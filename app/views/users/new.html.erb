@@ -2,10 +2,10 @@
 
 <%= form_with model: @user,ulr: users_path do |f| %>
   <% if @user.errors.any? %>
-    <div class="error_explanation">
+    <div class="error_explanation" style="color:#e16162">
       <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved: </h2>
       <ul>
-        <% @user.errors.full_message.each do |msg| %>
+        <% @user.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
         <% end %>
       </ul>

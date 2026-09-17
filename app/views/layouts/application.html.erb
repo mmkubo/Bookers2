@@ -25,49 +25,83 @@
   </head>
 
   <body class="d-flex flex-column vh-100">
-    <header>
-      <div class="container">
-        <div class="row" style="background-color: #004643">
+    <header style="color: white; font-size:24px ">
+      <div class="container-fluid">
+        <div class="row align-items-center py-2" style="background-color: #004643">
+
           <div class="col-2"></div>
-          <div class="col-1"></div>
-          <div class="col-3 offset-4">
-            <ul class="navbar-nav ms-auto">
-              <% if authenticated? %>
+
+          <div class="col-auto">
+            <%= link_to "Bookers", root_path, class: "navbar-brand" %>
+          </div>
+
+          <div class="col-auto ms-auto">
+            <ul class="navbar-nav flex-row gap-3">
+              <% if authenticated? %> 
+              <%# ログイン中のナビリスト %>
                 <li class="nav-item">
                   <%= link_to user_path(Current.user.id), class: "nav-link" do %>
-                    <i class="fa-solid fa-house">Home</i>
+                    <i class="fa-solid fa-house"></i>  Home
                   <% end %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to user_path(Current.user.id), class: "nav-link" %>
+                  <%= link_to users_path, class: "nav-link" do %>
+                    <i class="fa-solid fa-users"></i>  Users
+                  <% end %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "ログアウト", session_path,
-                              data: { turbo_method: :delete, turbo_confirm: "ログアウトしますか？" },
-                              class: "nav-link" %>
+                  <%= link_to books_path, class: "nav-link" do %>
+                    <i class="fa-solid fa-book-open"></i>  Books
+                  <% end %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to session_path,
+                  data: { turbo_method: :delete },class: "nav-link" do %>
+                    <i class="fa-solid fa-right-from-bracket"></i>  Log out
+                  <% end %>
                 </li>
               <% else %>
+              <%# ログイン未のナビリスト %>
                 <li class="nav-item">
-                  <%= link_to "新規登録", new_user_path, class: "nav-link" %>
+                  <%= link_to root_path, class: "nav-link" do %>
+                    <i class="fa-solid fa-house"></i>  Home
+                  <% end %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "ログイン", new_session_path, class: "nav-link" %>
+                  <%= link_to about_path, class: "nav-link" do %>
+                    <i class="fa-solid fa-link"></i>  About
+                  <% end %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to new_user_path, class: "nav-link" do %>
+                    <i class="fa-solid fa-user-plus"></i>  Sign up
+                  <% end %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to new_session_path, class: "nav-link" do %>
+                    <i class="fa-solid fa-right-to-bracket"></i>  Log in
+                  <% end %>
                 </li>
               <% end %>
             </ul>
-
           </div>
+
           <div class="col-2"></div>
+
         </div>
       </div>
     </header>
 
+    <% if flash[:notice] %>
+    <p class="notice fs-4 mt-3 ms-3"><i class="fa-solid fa-lightbulb"></i> <%= flash[:notice] %></p>
+    <% end %>
 
+      <%= yield %>
 
+    <footer>
+      <p class="fs-4 my-5 text-center">CopyRight Infratop.inc</p>
+    </footer>
 
-
-
-    <%= yield %>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
