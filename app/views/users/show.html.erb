@@ -1,62 +1,64 @@
-<div class="container mt-3">
+<div class="container-fluid mt-3">
   <div class="row">
 
-    <div class="col-3">
+    <div class="col-8 offset-2">
+    <div class="row">
+      <div class="col-3">
 
-    <h1>User info</h1>
-      <table class="table fs-4">
-        <tr>
-        <%= image_tag @user.get_profile_image, size: "150x150" %>
-        </tr>
-        <tr>
-          <th>name</th>
-          <td><%= @user.name %></td>
-        </tr>
-        <tr>
-          <th>introduction</th>
-          <td><%= @user.introduction %></td>
-        </tr>
-      </table>
+      <h1>User info</h1>
+        <table class="table fs-4">
+          <tr>
+          <%= image_tag @user.get_profile_image, size: "150x150" %>
+          </tr>
+          <tr>
+            <th>name</th>
+            <td><%= @user.name %></td>
+          </tr>
+          <tr>
+            <th>introduction</th>
+            <td><%= @user.introduction %></td>
+          </tr>
+        </table>
+        <div class="d-grid w-100 mt-5">
+          <%= link_to edit_user_path(@user), class: " btn btn-outline-secondary " do %>
+          <i class="fa-solid fa-user-gear"></i>
+          <% end %>
+        </div>
 
-      <%= link_to edit_user_path(@user), class: " btn btn-outline-secondary " do %>
-      <i class="fa-solid fa-user-gear"></i>
-      <% end %>
-
-
-    <h1>New book</h1>
-    <%= form_with model:@book do |f| %>
+      <h1>New book</h1>
+      <%= form_with model:@book do |f| %>
  
-      <div class="field">
-      <%= f.label :title %><br>
-      <%= f.text_field :title %>
+        <div class="field">
+        <%= f.label :title %><br>
+        <%= f.text_field :title %>
+        </div>
+
+        <div class="field">
+        <%= f.label :body %><br>
+        <%= f.text_field :body %>
+        </div><br>
+
+        <%= f.submit "Create Book", class: "btn", style: "background-color: #f9bc60; color: #001e1d " %>
+      <% end %>
       </div>
 
-      <div class="field">
-      <%= f.label :body %><br>
-      <%= f.text_field :body %>
-      </div><br>
+      <div class="col-8 offset-1">
 
-      <%= f.submit "Create Book", class: "btn", style: "background-color: #f9bc60; color: #001e1d " %>
-      <% end %>
-    </div>
+      <h1>Books</h1>
+        <table class="table fs-4">
+          <tr>
+            <th></th>
+            <th>Title</th>
+            <th>Opinion</th>
+          </tr>
+          <tr>
+            <td><%= image_tag @user.get_profile_image, size: "100x100" %></td>
+            <td><%= @book.title %></td>
+            <td><%= @book.body %></td>
+          </tr>
+        </table>
+      </div>
+      </div>
 
-    <div class="col-1"></div>
-
-    <div class="col-8">
-
-    <h1>Books</h1>
-      <table class="table fs-4">
-        <tr>
-          <th></th>
-          <th>Title</th>
-          <th>Opinion</th>
-        </tr>
-        <tr>
-          <td><%= image_tag @user.get_profile_image, size: "100x100" %></td>
-          <td><%= @book.title %></td>
-          <td><%= @book.body %></td>
-        </tr>
-      </table>
-    </div>
   </div>
 </div>
