@@ -1,2 +1,34 @@
-<h1>Books#show</h1>
-<p>Find me in app/views/books/show.html.erb</p>
+<div class="container mt-3 px-5">
+    <div class="row mx-3">
+
+
+      <div class="col-3">
+        <%= render "layouts/sidebar", user: @user, book: @book %>
+      </div>
+
+      <div class="col-8 offset-1">
+        <h2>Book detail</h2>
+          <table class="table">
+            <tbody>
+            <tr>
+              <td>
+              <%= image_tag @user.get_profile_image, size: "100x100", class: "border"%><br>
+              <%= link_to user_path(@book_detail.user) do %>
+                <%= @book_detail.user.name %>
+              <% end %>
+              </td>
+              <td>
+              <%= link_to book_path(@book_detail) do %>
+                <%= @book_detail.title %>
+              <% end %>
+              </td>
+              <td><%= @book_detail.body %></td>
+            </tr>
+            </tbody>
+          </table>
+      </div>
+
+    </div>  <%# row %>
+    </div>  <%# col-8 offset-2 %>
+  </div>  <%# row %>
+</div>  <%# container %>

@@ -1,0 +1,29 @@
+<div class="container mt-3 px-5">
+    <div class="row mx-3">
+
+      <div class="col-3">
+        <%= render "layouts/sidebar", user: @user, book: @book %>
+      </div>
+
+      <div class="col-8 offset-1">
+        <h2>Users</h2>
+          <table class="table table-borderless">
+            <tr>
+              <th>image</th>
+              <th>name</th>
+              <th></th>
+            </tr>
+            <% @users.each do |user| %>
+            <tr>
+              <td><%= image_tag user.get_profile_image, size: "85x85", class: "border" %></td>
+              <td><%= user.name %></td>
+              <td><%= link_to "Show", user_path(user) %></td>
+            </tr>
+            <% end %>
+          </table>
+      </div>
+
+    </div>  <%# row %>
+    </div>  <%# col-8 offset-2 %>
+  </div>  <%# row %>
+</div>  <%# container %>

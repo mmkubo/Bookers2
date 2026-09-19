@@ -3,9 +3,9 @@ class BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
     @books = Book.all
-    @book.user_id = current_user.id
+    @book.user_id = Current.user.id
     if @book.save
-      redirect_to book_path(Current.book.id), notice: "You have created book successfully." 
+      redirect_to book_path(@book), notice: "You have created book successfully." 
       #登録完了後、bookdetailへ
     else
       render :index, status: :unprocessable_entity
@@ -15,11 +15,14 @@ class BooksController < ApplicationController
 
   def index
     @books = Book.all
+    @user = Current.user
+    @book = Book.new
   end
 
   def show
-    @book = Book.find(params[:id]) #BOOK情報
-    @user = @book.user #BOOKの投稿者の情報全部
+    @book_detail = Book.find(params[:id]) #BOOK情報
+    @book = Book.new #投稿フォーム
+    @user = @book_detail.user #BOOKの投稿者の情報全部
   end
 
   def edit
@@ -45,5 +48,12 @@ class BooksController < ApplicationController
     else
       render :index, status: :unprocessable_entity
     end
+  end
+
+
+  private
+
+  def book_params
+    params.require(:book).permit(:title, :body)
   end
 end

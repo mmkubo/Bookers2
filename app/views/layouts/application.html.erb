@@ -25,14 +25,14 @@
   </head>
 
   <body class="d-flex flex-column vh-100">
-    <header style="color: white; font-size:24px ">
+    <header style="color: white; ">
       <div class="container-fluid">
         <div class="row align-items-center py-2" style="background-color: #004643">
 
           <div class="col-2"></div>
 
           <div class="col-auto">
-            <%= link_to "Bookers", root_path, class: "navbar-brand" %>
+            <%= link_to "Bookers", root_path, class: "fs-5 navbar-brand" %>
           </div>
 
           <div class="col-auto ms-auto">
@@ -93,13 +93,13 @@
     </header>
 
     <% if flash[:notice] %>
-    <p class="notice fs-4 mt-3 ms-3"><i class="fa-solid fa-lightbulb"></i> <%= flash[:notice] %></p>
+    <p class="notice mt-3 ms-3"><%= flash[:notice] %></p>
     <% end %>
 
       <%= yield %>
 
     <footer>
-      <p class="fs-4 my-5 text-center">CopyRight Infratop.inc</p>
+      <p class=" my-5 text-center">CopyRight Infratop.inc</p>
     </footer>
 
 
