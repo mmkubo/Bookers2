@@ -1,5 +1,5 @@
 
-      <div class="mx-3">
+      <div class="mx-2">
       <h2>User info</h2>
         <table class="table">
           <tr>
@@ -16,13 +16,13 @@
         </table>
       </div>
 
-        <div class="d-grid w-100 mt-4">
-          <%= link_to edit_user_path(user), class: " btn btn-outline-secondary " do %>
-          <i class="fa-solid fa-user-gear"></i>
-          <% end %>
-        </div>
+      <div class="d-grid w-100 mt-4">
+        <%= link_to edit_user_path(user), class: " btn btn-outline-secondary " do %>
+        <i class="fa-solid fa-user-gear"></i>
+        <% end %>
+      </div>
 
-      <div class="m-3">
+      <div class="mx-2 mt-3">
       <h2>New book</h2>
       <%= form_with model:book do |f| %>
  
@@ -31,7 +31,7 @@
         <%= f.text_field :title, class: "form-control" %>
         </div>
 
-        <div class="field">
+        <div class="field mt-3">
         <%= f.label :body, "Opinion" %><br>
         <%= f.text_area :body, class: "form-control" %>
         </div><br>

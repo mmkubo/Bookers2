@@ -18,26 +18,26 @@
 .table th{
   padding: 15px !important;
 }
-.table td{
+.table td {
   padding: 15px !important;
 }
+
 .table {
   border-top: 1px solid #dee2e6;
-  th {
-    border-bottom: 1px solid #dee2e6 !important;
-}
-  tr {
-    border-bottom: 1px solid #dee2e6;
-  }
-  last-child td {
-    border-bottom: none !important;
-  }
 }
 
-a {
+.table tr:last-child td {
+  border-bottom: none !important;
+}
+
+main a {
   text-decoration: none !important;
+}
+main a:hover {
+  text-decoration: underline !important;
 }
 
 label{
   padding-bottom: 7px;
 }
+

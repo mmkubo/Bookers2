@@ -27,12 +27,13 @@ class BooksController < ApplicationController
 
   def edit
     @book = Book.find(params[:id]) #ユーザー情報
-  end
+    @user = @book.user
+    end
 
   def update
     @book = Book.find(params[:id]) #BOOK情報
     if @book.update(book_params)
-      redirect_to book_path(params[:id]), notice: "You have updated book successfully." 
+      redirect_to books_path, notice: "You have updated book successfully." 
       #登録完了後、bookdetailへ
     else
       render :edit, status: :unprocessable_entity

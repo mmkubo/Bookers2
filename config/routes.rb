@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: "homes#top"
   get "about" => "homes#about", as: "about"
 
-  resources :users, only: [:new, :create, :index, :show, :edit, :update, :destroy], path:"users", path_names: { new: "sing_up" }
+  resources :users, only: [:new, :create, :index, :show, :edit, :update, :destroy]
 
   resource :session
   resources :passwords, param: :token
