@@ -26,23 +26,21 @@
 
   <body class="d-flex flex-column vh-100">
     <header>
-      <div class="container-fluid">
-        <div class="row align-items-center py-2 navbar navbar-expand-xl navbar-dark" style="background-color: #004643">
 
-          <div class="col-md-2"></div>
+      <nav class="navbar navbar-expand-lg navbar-dark shadow-sm" style="background-color: #004643;">
+        <div class="container">
+          <div class="row w-100 mx-auto">
+          <div class="col-12 col-lg-10 mx-auto px-0 d-flex align-items-center">
 
-          <div class="col-auto">
-            <%= link_to "Bookers", root_path, class: "fs-5 navbar-brand" %>
-          </div>
+          <%= link_to "Bookers", root_path, class: "fs-5 navbar-brand" %>
 
-          <div class="col-md-auto ms-auto">
-
-          <button class="navbar-toggler text-white border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <button class="navbar-toggler text-white border-0 ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <i class="fa-solid fa-bars fs-4 text-white"></i>
           </button>
 
           <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav d-flex flex-column flex-md-row gap-3">
+
+            <ul class="navbar-nav ms-auto ">
               <% if authenticated? %> 
               <%# ログイン中のナビリスト %>
                 <li class="nav-item">
@@ -93,18 +91,16 @@
           </div>
           </div>
 
-          <div class="col-md-2"></div>
-
-        </div>
-      </div>
+    </nav>
     </header>
 
     <main>
     <% if flash[:notice] %>
-    <p class="notice mt-3 ms-3"><%= flash[:notice] %></p>
+      <p class="notice mt-3 ms-3"><%= flash[:notice] %></p>
     <% end %>
 
-      <%= yield %>
+    <%= yield %>
+
     </main>
     
     <footer>
