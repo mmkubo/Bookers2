@@ -14,6 +14,8 @@ class UsersController < ApplicationController
       redirect_to user_path(Current.user.id), notice: "Welcome! You have signed up successfully." 
       #登録完了後、マイページへ
     else
+      @users = User.all
+      @book = Book.new
       render :new, status: :unprocessable_entity
       #エラー後、登録画面へ
     end
@@ -33,10 +35,17 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id]) #ユーザー情報
+    unless @user == Current.user #本人じゃないなら弾く
+      redirect_to user_path(Current.user)
+    end
   end
 
   def update
     @user = User.find(params[:id]) #ユーザー情報
+    unless @user == Current.user #本人じゃないなら弾く
+    return redirect_to user_path(Current.user)
+    end
+
     if @user.update(user_params)
       redirect_to user_path(Current.user.id), notice: "You have updated user successfully." 
       #登録完了後、マイページへ
@@ -56,7 +65,7 @@ class UsersController < ApplicationController
   def is_matching_login_user
     user = User.find(params[:id])
     unless user.id == Current.user.id
-      redirect_to post_images_path
+      redirect_to user_path(Current.user)
     end
   end
 

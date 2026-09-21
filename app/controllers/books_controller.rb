@@ -8,6 +8,8 @@ class BooksController < ApplicationController
       redirect_to book_path(@book), notice: "You have created book successfully." 
       #登録完了後、bookdetailへ
     else
+      @users = User.all
+      @user = Current.user
       render :index, status: :unprocessable_entity
       #エラー後、books画面へ
     end
@@ -27,13 +29,20 @@ class BooksController < ApplicationController
 
   def edit
     @book = Book.find(params[:id]) #ユーザー情報
+    unless @book.user == Current.user #本人じゃないなら弾く
+      redirect_to books_path
+    end
     @user = @book.user
     end
 
   def update
     @book = Book.find(params[:id]) #BOOK情報
+    unless @book.user == Current.user #本人じゃないなら弾く
+      redirect_to books_path
+    end
+
     if @book.update(book_params)
-      redirect_to books_path, notice: "You have updated book successfully." 
+      redirect_to book_path(@book), notice: "You have updated book successfully." 
       #登録完了後、bookdetailへ
     else
       render :edit, status: :unprocessable_entity

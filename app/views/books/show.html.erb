@@ -2,11 +2,11 @@
     <div class="row mx-3">
 
 
-      <div class="col-3">
+      <div class="col-md-3">
         <%= render "layouts/sidebar", user: @user, book: @book %>
       </div>
 
-      <div class="col-8 offset-1">
+      <div class="col-md-8 offset-md-1">
         <h2>Book detail</h2>
           <table class="table">
             <tbody>
@@ -23,16 +23,18 @@
               <% end %>
               </td>
               <td><%= @book_detail.body %></td>
-              <td><%= link_to "Edit", edit_book_path(@book_detail), class:"btn btn-success btn-sm" %>
-              </td>
-              <td><%= button_to "Destroy", book_path(@book_detail), method: :delete, data: { turbo_confirm: "本当に消しますか？" }, class: "btn btn-danger btn-sm" %>
-              </td>
+              <% if @book_detail.user == Current.user %>
+                <td><%= link_to "Edit", edit_book_path(@book_detail), class:"btn btn-success btn-sm" %>
+                </td>
+                <td><%= link_to "Destroy", book_path(@book_detail), method: :delete, data: { turbo_confirm: "本当に消しますか？" }, class: "btn btn-danger btn-sm" %>
+                </td>
+              <% end %>
               </tr>
             </tbody>
           </table>
       </div>
 
     </div>  <%# row %>
-    </div>  <%# col-8 offset-2 %>
+    </div>  <%# col-md-8 offset-md-2 %>
   </div>  <%# row %>
 </div>  <%# container %>
