@@ -1,6 +1,4 @@
 
-      <div class="">
-
       <h2>User info</h2>
         <table class="table user_info_table">
           <tr>
@@ -15,7 +13,6 @@
             <td class="fw-bold"><%= user.introduction %></td>
           </tr>
         </table>
-      </div>
 
       <div class="d-grid mt-4">
         <%= link_to edit_user_path(user), class: " btn btn-outline-secondary " do %>
@@ -40,5 +37,6 @@
 
         <%= f.submit "Create Book", class: "btn", style: "background-color: #f9bc60; color: #001e1d " %>
       <% end %>
+      
       </div>
 
