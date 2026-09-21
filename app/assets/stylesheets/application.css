@@ -15,6 +15,10 @@
   box-sizing: border-box;
  }
 
+.navbar-nav .nav-link {
+  color: #ffffff !important;
+}
+
 .table th{
   padding: 15px !important;
 }

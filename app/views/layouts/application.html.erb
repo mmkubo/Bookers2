@@ -25,9 +25,9 @@
   </head>
 
   <body class="d-flex flex-column vh-100">
-    <header style="color: white; ">
+    <header>
       <div class="container-fluid">
-        <div class="row align-items-center py-2" style="background-color: #004643">
+        <div class="row align-items-center py-2 navbar navbar-expand-xl navbar-dark" style="background-color: #004643">
 
           <div class="col-md-2"></div>
 
@@ -36,7 +36,13 @@
           </div>
 
           <div class="col-md-auto ms-auto">
-            <ul class="navbar-nav flex-row gap-3">
+
+          <button class="navbar-toggler text-white border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fa-solid fa-bars fs-4 text-white"></i>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav d-flex flex-column flex-md-row gap-3">
               <% if authenticated? %> 
               <%# ログイン中のナビリスト %>
                 <li class="nav-item">
@@ -84,6 +90,7 @@
                 </li>
               <% end %>
             </ul>
+          </div>
           </div>
 
           <div class="col-md-2"></div>
