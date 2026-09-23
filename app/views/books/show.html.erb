@@ -10,24 +10,42 @@
           <table class="table">
             <tbody>
             <tr>
+
               <td>
-              <%= image_tag @user.get_profile_image, size: "100x100", class: "border"%><br>
-              <%= link_to user_path(@book_detail.user) do %>
-                <%= @book_detail.user.name %>
-              <% end %>
+                <%= image_tag @user.get_profile_image, size: "100x100", class: "border"%><br>
+                <%= link_to user_path(@book_detail.user) do %>
+                  <%= @book_detail.user.name %>
+                <% end %>
               </td>
+
               <td>
-              <%= link_to book_path(@book_detail) do %>
-                <%= @book_detail.title %>
-              <% end %>
+                <%= link_to book_path(@book_detail) do %>
+                  <%= @book_detail.title %>
+                <% end %>
               </td>
+
               <td><%= @book_detail.body %></td>
+
               <% if @book_detail.user == Current.user %>
-                <td><%= link_to "Edit", edit_book_path(@book_detail), class:"btn btn-success btn-sm" %>
-                </td>
-                <td><%= link_to "Destroy", book_path(@book_detail), method: :delete, data: { turbo_confirm: "本当に消しますか？" }, class: "btn btn-danger btn-sm" %>
-                </td>
+              <td>
+                <%= link_to "Edit", edit_book_path(@book_detail), class:"btn btn-success btn-sm" %>
+              </td>
+              <td>
+                <%= link_to "Destroy", book_path(@book_detail),data: { turbo_method: :delete, turbo_confirm: "本当に消しますか？" }, class: "btn btn-danger btn-sm" %>
+              </td>
               <% end %>
+              <td>
+                <% if @book_detail.favorited_by?(Current.user) %>
+                  <%= link_to book_favorite_path(@book_detail), data: { turbo_method: :delete },style: "color: #e16162;" do %>
+                    ♥<%= @book_detail.favorites.count %>
+                  <% end %>
+                <% else %>
+                  <%= link_to book_favorite_path(@book_detail), data: { turbo_method: :post },style: "color: #90b4ce" do %>
+                    ♥<%= @book_detail.favorites.count %>
+                  <% end %>
+                 <% end %>
+              </td>
+
               </tr>
             </tbody>
           </table>

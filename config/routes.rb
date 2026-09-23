@@ -8,8 +8,9 @@ Rails.application.routes.draw do
   resource :session
   resources :passwords, param: :token
 
-  resources :books, only: [:create, :index ,:show, :edit, :update, :destroy]
-
+  resources :books, only: [:create, :index ,:show, :edit, :update, :destroy] do
+    resource :favorite, only: [:create, :destroy]
+  end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

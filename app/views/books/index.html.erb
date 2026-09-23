@@ -24,6 +24,7 @@
             <th></th>
             <th>Title</th>
             <th>Opinion</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -38,6 +39,17 @@
               <%= link_to book.title, book_path(book) %>
             </td>
             <td><%= book.body %></td>
+            <td>
+              <% if book.favorited_by?(Current.user) %>
+                <%= link_to book_favorite_path(book), data: { turbo_method: :delete },style: "color: #e16162;" do %>
+                  ♥<%= book.favorites.count %>
+                <% end %>
+              <% else %>
+                <%= link_to book_favorite_path(book), data: { turbo_method: :post },style: "color: #90b4ce" do %>
+                  ♥<%= book.favorites.count %>
+                <% end %>
+              <% end %>
+            </td>
           </tr>
           <% end %>
         </tbody>
