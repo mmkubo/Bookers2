@@ -1,6 +1,17 @@
 <div class="container px-5 mt-3">
     <div class="row">
 
+  <% if @book_comment && @book_comment.errors.any? %>
+    <div id="error_explanation">
+      <h3><%= pluralize(@book_comment.errors.count, "error") %> prohibited this comment from being saved:</h3>
+      <ul>
+        <% @book_comment.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+     </div>
+  <% end %>
+
       <div class="col-md-3">
         <%= render "layouts/sidebar", user: @user, book: @book %>
       </div>
@@ -45,10 +56,44 @@
                   <% end %>
                  <% end %>
               </td>
-
+              <td>
+                コメント数: <%= @book_detail.book_comments.count %>
+              </td>
               </tr>
             </tbody>
           </table>
+
+          <table class="table comment-table" style="width: auto;">
+            <% @book_detail.book_comments.each do |comment| %>
+            <tr>
+            <td>
+              <%= image_tag comment.user.get_profile_image, size: "70x70" %><br>
+              <%= link_to user_path(comment.user) do %>
+                <%= comment.user.name %>
+              <% end %>
+            </td>
+      
+            <td>
+              <%= comment.comment %>
+            </td>
+      
+            <td>
+              <% if comment.user == Current.user %>
+                <%= link_to "Destroy", book_book_comment_path(@book_detail, comment), data: { turbo_method: :delete }, class: "btn btn-danger btn-sm" %>
+              <% end %>
+            </td>
+            </tr>
+            <% end %>
+          </table>
+
+          <%= form_with model: [@book_detail, @book_comment] do |f| %> 
+            <div class="field mt-3">
+              <%= f.text_area :comment, rows: '3', class: "form-control" %>
+            </div>
+
+            <%= f.submit "送信" %>
+          <% end %>
+
       </div> <%# col-md-8 offset-md-2 %>
 
   </div>  <%# row %>

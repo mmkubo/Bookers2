@@ -36,6 +36,23 @@
   border-bottom: none !important;
 }
 
+.comment-table {
+  border-style: none !important;
+}
+.comment-table td {
+  padding: 8px !important; 
+  vertical-align: middle;
+}
+.comment-table .comment-user {
+  width: 150px;
+  text-align: center;
+}
+
+.comment-table .comment-delete {
+  width: 100px;
+  text-align: center;
+}
+
 main a {
   text-decoration: none !important;
 }
