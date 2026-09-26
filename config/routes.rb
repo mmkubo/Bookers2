@@ -5,6 +5,10 @@ Rails.application.routes.draw do
 
   resources :users, only: [:new, :create, :index, :show, :edit, :update, :destroy], path_names: { new: "sign_up" } do
     resource :relationship, only: [:create, :destroy]
+    member do 
+      get :following
+      get :followers
+    end
   end
 
   resource :session

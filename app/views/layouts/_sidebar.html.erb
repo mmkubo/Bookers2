@@ -14,12 +14,26 @@
           </tr>
           <tr>
             <th>follows</th>
-            <td></td>
+            <td><%= link_to user.followings.count, following_user_path(user) %></td>
+          </tr>
+          <tr>
+            <th>followers</th>
+            <td><%= link_to user.followers.count, followers_user_path(user) %></td>
+          </tr>
         </table>
 
       <div class="d-grid mt-4">
-        <%= link_to edit_user_path(user), class: " btn btn-outline-secondary " do %>
-        <i class="fa-solid fa-user-gear"></i>
+        <% if @user == Current.user %>
+          <%= link_to edit_user_path(@user), class: " btn btn-outline-secondary " do %>
+          <i class="fa-solid fa-user-gear"></i>
+          <% end %>
+
+        <% else %>
+          <% if Current.user.following?(@user) %> 
+            <%= link_to "フォロー外す", user_relationship_path(@user), data: { turbo_method: :delete }, class: "btn w-50 ", style: "background-color: #abd1c6; color: #001e1d" %>
+          <% else %>
+            <%= link_to "フォローする", user_relationship_path(@user), data: { turbo_method: :post }, class: "btn w-50 ", style: "background-color: #f9bc60; color: #001e1d" %>
+          <% end %>
         <% end %>
       </div>
 

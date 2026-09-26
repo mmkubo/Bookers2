@@ -59,6 +59,9 @@ main a {
 main a:hover {
   text-decoration: underline !important;
 }
+main a.btn:hover {
+  text-decoration: none !important;
+}
 
 label{
   padding-bottom: 7px;
