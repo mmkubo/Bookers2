@@ -22,6 +22,9 @@ class User < ApplicationRecord
 
   has_one_attached :profile_image
 
+  validates :name, presence: true, uniqueness: true, length: { in: 2..20 }
+  validates :introduction, length: { maximum: 50 }
+
   def get_profile_image
     unless profile_image.attached?
       file_path = Rails.root.join('app/assets/images/noimage_user.jpg')
@@ -46,6 +49,20 @@ class User < ApplicationRecord
 # すでにフォローしているか判定する
   def following?(other_user)
     active_relationships.exists?(followed_id: other_user.id)
+  end
+
+  def self.looks(search, word)
+    if search == "perfect" #完全一致
+      user.where("name LIKE?", "#{word}")
+    elsif search == "forward" #前方一致
+      user.where("name LIKE?", "#{word}%"
+    elsif search == "forward" #後方一致
+      user.where("name LIKE?", "%#{word}"
+    elsif search == "forward" #部分一致
+      user.where("name LIKE?", "%#{word}%"
+    else
+      User.all
+    end
   end
 
   validates :name, presence: true, uniqueness: true, length: { in: 2..20 }

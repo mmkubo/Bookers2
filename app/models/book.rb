@@ -10,5 +10,19 @@ class Book < ApplicationRecord
     favorites.exists?(user_id: user.id)
   end
 
+    def self.looks(search, word)
+    if search == "perfect" #完全一致
+      user.where("name LIKE?", "#{word}")
+    elsif search == "forward" #前方一致
+      user.where("name LIKE?", "#{word}%"
+    elsif search == "forward" #後方一致
+      user.where("name LIKE?", "%#{word}"
+    elsif search == "forward" #部分一致
+      user.where("name LIKE?", "%#{word}%"
+    else
+      User.all
+    end
+  end
+
   
 end
