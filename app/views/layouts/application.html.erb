@@ -98,13 +98,17 @@
 
     <div class="container">
       <div class="row w-100 justify-content-end">
-        <div class="col-12 col-lg-10">
-
-        <%= form_with url: search_path, method: get do |f| %>
-          <%= f.text_field :word %>
-          <%= f.select :target, option_for_select([["User","User"]["Book","Book"]]), {}, class: "form-control" %>
-          <%= f.select :search, option_for_select([["完全一致","perfect"]["前方一致","forward"]["後方一致","backward"]["部分一致","partial"]]), {}, class: "form-control" %>
-          <%= f.submit "検索" %>
+        <div class="col-12">
+        
+        <%= form_with url: search_path, method: :get do |f| %>
+          <div class="d-flex justify-content-end"> <%# 綺麗に横並びになる %>
+            <%= f.text_field :word, class: "form-control-sm mr-5" %>
+            <%= f.select :target, options_for_select([["User","User"],["Book","Book"]]), {}, class: "form-control-sm mr-5" %>
+            <%= f.select :search, options_for_select([["完全一致","perfect"],["前方一致","forward"],["後方一致","backward"],["部分一致","partial"]]), {}, class: "form-control-sm mr-5" %>
+            <div class="input-group-append">
+              <%= f.submit "検索" %>
+            </div>
+          </div>
         <% end %>
 
         </div>
