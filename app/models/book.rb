@@ -12,13 +12,13 @@ class Book < ApplicationRecord
 
     def self.looks(search, word)
     if search == "perfect" #完全一致
-      user.where("name LIKE?", "#{word}")
+      user.where("title LIKE?", "#{word}")
     elsif search == "forward" #前方一致
-      user.where("name LIKE?", "#{word}%"
+      user.where("title LIKE?", "#{word}%"
     elsif search == "forward" #後方一致
-      user.where("name LIKE?", "%#{word}"
+      user.where("title LIKE?", "%#{word}"
     elsif search == "forward" #部分一致
-      user.where("name LIKE?", "%#{word}%"
+      user.where("title LIKE?", "%#{word}%"
     else
       User.all
     end
