@@ -15,9 +15,9 @@ class Book < ApplicationRecord
       Book.where("title LIKE?", "#{word}")
     elsif search == "forward" #前方一致
       Book.where("title LIKE?", "#{word}%")
-    elsif search == "forward" #後方一致
+    elsif search == "backward" #後方一致
       Book.where("title LIKE?", "%#{word}")
-    elsif search == "forward" #部分一致
+    elsif search == "partial" #部分一致
       Book.where("title LIKE?", "%#{word}%")
     else
       Book.all

@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  get "/search", to: "searchs#search"
-
+  
   root to: "homes#top"
   get "home/about" => "homes#about", as: "about"
+  get "search", to: "searches#search"
 
   resources :users, only: [:new, :create, :index, :show, :edit, :update, :destroy], path_names: { new: "sign_up" } do
     resource :relationship, only: [:create, :destroy]

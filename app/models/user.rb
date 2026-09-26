@@ -56,9 +56,9 @@ class User < ApplicationRecord
       User.where("name LIKE?", "#{word}")
     elsif search == "forward" #前方一致
       User.where("name LIKE?", "#{word}%")
-    elsif search == "forward" #後方一致
+    elsif search == "backward" #後方一致
       User.where("name LIKE?", "%#{word}")
-    elsif search == "forward" #部分一致
+    elsif search == "partial" #部分一致
       User.where("name LIKE?", "%#{word}%")
     else
       User.all

@@ -1,5 +1,5 @@
 class SearchesController < ApplicationController
-  before_action :authenticate_user!
+  #before_action :authenticate_user!
 
   def search
     @target = params[:target] #選択された探す対象
@@ -8,7 +8,7 @@ class SearchesController < ApplicationController
 
     if @target == "User"
       @users = User.looks(@search, @word)
-    else @target == "Book"
+    else
       @books = Book.looks(@search, @word)
     end
   end
