@@ -1,0 +1,51 @@
+<div class="container px-5 mt-3">
+<div class="row">
+<div class="col-12 px-5 px-sm-0 mx-auto">
+
+<% if @target == "User" %> #検索条件がBookの時
+<h1>Users search for "<%= @word %>"</h1>
+
+  <table class="table">
+
+    <tr>
+      <th></th>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+    </tr>
+
+      <% @users.each do |user| %>
+      <tr>
+        <td><%= image_tag user.get_profile_image, size: "50x50", class: "border" %></td>
+        <td><%= user.name %></td>
+        <td>フォロー数: <%= user.followings.count %></td>
+        <td>フォロワー: <%= user.followers.count %></td>
+      </tr>
+      <% end %>
+  </table>
+<% end %>
+
+<% if @target == "Book" %> #検索条件がBookの時
+<h1>Books search for "<%= @word %>"</h1>
+
+  <table class="table">
+
+    <tr>
+      <th></th>
+      <th>Title</th>
+      <th>Opinion</th>
+    </tr>
+
+      <% @books.each do |book| %>
+      <tr>
+        <td><%= image_tag book.get_profile_image, size: "50x50", class: "border" %></td>
+        <td><%= book.title %></td>
+        <td><%= book.body %></td>
+      </tr>
+      <% end %>
+  </table>
+<% end %>
+
+</div>
+</div>
+</div>
