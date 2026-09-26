@@ -7,16 +7,28 @@
 
       <div class="col-md-8 offset-md-1">
         <h2>Users</h2>
-          <table class="table table-borderless">
+          <table class="table">
             <tr>
               <th>image</th>
               <th>name</th>
               <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
             </tr>
             <% @users.each do |user| %>
             <tr>
-              <td><%= image_tag user.get_profile_image, size: "85x85", class: "border" %></td>
+              <td><%= image_tag user.get_profile_image, size: "50x50", class: "border" %></td>
               <td><%= user.name %></td>
+              <td>フォロー数: <%= user.followings.count %></td>
+              <td>フォロワー: <%= user.followers.count %></td>
+              <td>
+                <% if Current.user.following?(@user) %> 
+                  <%= link_to "フォロー外す", user_relationship_path(user), data: { turbo_method: :delete } %>
+                <% else %>
+                  <%= link_to "フォローする", user_relationship_path(user), data: { turbo_method: :post } %>
+                <% end %>
+              </td>
               <td><%= link_to "Show", user_path(user) %></td>
             </tr>
             <% end %>
