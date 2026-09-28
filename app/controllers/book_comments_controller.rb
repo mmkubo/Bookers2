@@ -4,7 +4,7 @@ class BookCommentsController < ApplicationController
     @book_comment = Current.user.book_comments.new(book_comment_params)
     @book_comment.book_id = @book_detail.id
     if @book_comment.save
-      redirect_back(fallback_location: books_path(@book_detail)) #直前に戻る、履歴がなければshowへ戻る（どの本のshowか）
+      #redirect_back(fallback_location: books_path(@book_detail)) #直前に戻る、履歴がなければshowへ戻る（どの本のshowか）
     else
       @book = Book.new
       @user = @book_detail.user 
@@ -13,10 +13,10 @@ class BookCommentsController < ApplicationController
   end
 
   def destroy
-    book = Book.find(params[:book_id])
-    comment = Current.user.book_comments.find_by(book_id: book.id)
-    comment.destroy
-    redirect_back(fallback_location: books_path(book)) #直前に戻る、履歴がなければshowへ戻る（どの本のshowか）
+    @book = Book.find(params[:book_id])
+    @comment = @book.book_comments.find(params[:id])     
+    @comment.destroy
+    #redirect_back(fallback_location: books_path(book)) #直前に戻る、履歴がなければshowへ戻る（どの本のshowか）
   end
 
   private
