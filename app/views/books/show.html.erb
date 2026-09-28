@@ -46,15 +46,9 @@
               </td>
               <% end %>
               <td>
-                <% if @book_detail.favorited_by?(Current.user) %>
-                  <%= link_to book_favorite_path(@book_detail), data: { turbo_method: :delete },style: "color: #e16162;" do %>
-                    ♥<%= @book_detail.favorites.count %>
-                  <% end %>
-                <% else %>
-                  <%= link_to book_favorite_path(@book_detail), data: { turbo_method: :post },style: "color: #90b4ce" do %>
-                    ♥<%= @book_detail.favorites.count %>
-                  <% end %>
-                 <% end %>
+                <%= turbo_frame_tag dom_id(@book_detail, :favorite) do %>
+                  <%= render "favorites/favorite_btn", book: @book_detail %>
+                <% end %>
               </td>
               <td>
                 コメント数: <%= @book_detail.book_comments.count %>
