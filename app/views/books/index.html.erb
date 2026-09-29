@@ -1,16 +1,7 @@
 <div class="container px-5 mt-3">
     <div class="row">
 
-  <% if @book && @book.errors.any? %>
-    <div id="error_explanation">
-      <h3><%= pluralize(@book.errors.count, "error") %> prohibited this book from being saved:</h3>
-      <ul>
-        <% @book.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-     </div>
-  <% end %>
+  
 
     <div class="col-md-3">
       <%= render "layouts/sidebar", user: @user, book: @book %>
@@ -18,40 +9,7 @@
 
     <div class="col-md-8 offset-md-1">
       <h2>Books</h2>
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th></th>
-            <th>Title</th>
-            <th>Opinion</th>
-            <th></th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @books.each do |book| %>
-          <tr>
-            <td>
-              <%= link_to user_path(book.user) do %>
-                <%= image_tag book.user.get_profile_image, size: "85x85", class: "border" %>
-              <% end %>
-            </td>
-            <td>
-              <%= link_to book.title, book_path(book) %>
-            </td>
-            <td><%= book.body %></td>
-            <td>
-              <%= turbo_frame_tag dom_id(book, :favorite) do %>
-                <%= render "favorites/favorite_btn", book: book %>
-              <% end %>
-            </td>
-            <td>
-              コメント数: <%= book.book_comments.count %>
-            </td>
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
+      
     </div>
 
   </div><%# row %>

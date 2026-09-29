@@ -1,4 +1,6 @@
 class BooksController < ApplicationController
+before_action :set_book, only: [:show, :edit, :update, :destroy]
+before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
   def create
     @book = Book.new(book_params)
@@ -24,26 +26,16 @@ class BooksController < ApplicationController
   end
 
   def show
-    @book_detail = Book.find(params[:id]) #BOOK情報
     @book = Book.new #投稿フォーム
     @user = @book_detail.user #BOOKの投稿者の情報全部
     @book_comment = BookComment.new #コメント
   end
 
   def edit
-    @book = Book.find(params[:id]) #ユーザー情報
-    unless @book.user == Current.user #本人じゃないなら弾く
-      redirect_to books_path
-    end
     @user = @book.user
     end
 
   def update
-    @book = Book.find(params[:id]) #BOOK情報
-    unless @book.user == Current.user #本人じゃないなら弾く
-      redirect_to books_path
-    end
-
     if @book.update(book_params)
       redirect_to book_path(@book), notice: "You have updated book successfully." 
       #登録完了後、bookdetailへ
@@ -54,12 +46,11 @@ class BooksController < ApplicationController
   end
 
   def destroy
-    book = Book.find(params[:id])
-    @books = Book.all
-    if book.destroy
+    if @book.destroy
       redirect_to books_path
     else
-      render :index, status: :unprocessable_entity
+      @books = Book.all
+      render :index, status: :unprocessable_entity #失敗したらindexの戻す。ために、@booksが必要
     end
   end
 
@@ -68,5 +59,15 @@ class BooksController < ApplicationController
 
   def book_params
     params.require(:book).permit(:title, :body)
+  end
+
+  def book_set
+    @book = Book.find(params[:id])
+  end
+
+  def ensure_correct_user
+    unless @book.user == Current.user
+      redirect_to books_path
+    end
   end
 end

@@ -1,16 +1,7 @@
 <div class="container px-5 mt-3">
     <div class="row">
 
-  <% if @book_comment && @book_comment.errors.any? %>
-    <div id="error_explanation">
-      <h3><%= pluralize(@book_comment.errors.count, "error") %> prohibited this comment from being saved:</h3>
-      <ul>
-        <% @book_comment.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-     </div>
-  <% end %>
+
 
       <div class="col-md-3">
         <%= render "layouts/sidebar", user: @user, book: @book %>
@@ -51,7 +42,7 @@
                 <% end %>
               </td>
               <td>
-                コメント数: <%= @book_detail.book_comments.count %>
+                #コメント数: <%= @book_detail.book_comments.count %>
               </td>
               </tr>
             </tbody>

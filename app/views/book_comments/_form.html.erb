@@ -1,0 +1,12 @@
+<%= form_with model: [book_detail, BookComment.new], id: "new-comment" do |f| %> 
+  <div class="field mt-3">
+    <%= f.text_area :comment, rows: '3', class: "form-control" %>
+  </div>
+    <%= f.submit "送信" %>
+<% end %>
+
+<%= render 'layouts/errors', obj: book_comment %>
+<%= form_with(model:[book, book_comment]) do |f| %>
+  <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに", class: "w-100 comment-textarea" %>
+  <%= f.submit "送信する", class: "btn btn-primary btn-base-1 mt-20 pull-right" %>
+<% end %>
