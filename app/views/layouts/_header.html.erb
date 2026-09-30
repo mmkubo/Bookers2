@@ -1,67 +1,65 @@
-      <nav class="navbar navbar-expand-lg navbar-dark shadow-sm" style="background-color: #004643;">
-        <div class="container">
-          <div class="row w-100 mx-auto">
-          <div class="col-12 col-lg-10 mx-auto px-0 d-flex align-items-center">
+<header>
+  <nav class="navbar navbar-expand-lg navbar-dark shadow-sm" style="background-color: #004643;">
+    <div class="container">
+    <div class="row w-100 mx-auto">
+    <div class="col-12 col-lg-10 mx-auto px-0 d-flex align-items-center">
 
-          <%= link_to "Bookers", root_path, class: "fs-5 navbar-brand" %>
+      <%= link_to "Bookers", root_path, class: "fs-5 navbar-brand" %>
 
-          <button class="navbar-toggler text-white border-0 ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <i class="fa-solid fa-bars fs-4 text-white"></i>
-          </button>
+      <button class="navbar-toggler text-white border-0 ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fa-solid fa-bars fs-4 text-white"></i>
+      </button>
 
-          <div class="collapse navbar-collapse" id="navbarNav">
-
-            <ul class="navbar-nav ms-auto ">
-              <% if authenticated? %> 
-              <%# ログイン中のナビリスト %>
-                <li class="nav-item">
-                  <%= link_to user_path(Current.user.id), class: "nav-link" do %>
-                    <i class="fa-solid fa-house"></i>  Home
-                  <% end %>
-                </li>
-                <li class="nav-item">
-                  <%= link_to users_path, class: "nav-link" do %>
-                    <i class="fa-solid fa-users"></i>  Users
-                  <% end %>
-                </li>
-                <li class="nav-item">
-                  <%= link_to books_path, class: "nav-link" do %>
-                    <i class="fa-solid fa-book-open"></i>  Books
-                  <% end %>
-                </li>
-                <li class="nav-item">
-                  <%= link_to session_path,
-                  data: { turbo_method: :delete },class: "nav-link" do %>
-                    <i class="fa-solid fa-right-from-bracket"></i>  Log out
-                  <% end %>
-                </li>
-              <% else %>
-              <%# ログイン未のナビリスト %>
-                <li class="nav-item">
-                  <%= link_to root_path, class: "nav-link" do %>
-                    <i class="fa-solid fa-house"></i>  Home
-                  <% end %>
-                </li>
-                <li class="nav-item">
-                  <%= link_to about_path, class: "nav-link" do %>
-                    <i class="fa-solid fa-link"></i>  About
-                  <% end %>
-                </li>
-                <li class="nav-item">
-                  <%= link_to new_user_path, class: "nav-link" do %>
-                    <i class="fa-solid fa-user-plus"></i>  Sign up
-                  <% end %>
-                </li>
-                <li class="nav-item">
-                  <%= link_to new_session_path, class: "nav-link" do %>
-                    <i class="fa-solid fa-right-to-bracket"></i>  Log in
-                  <% end %>
-                </li>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto ">
+          <% if authenticated? %> 
+            <li class="nav-item">
+              <%= link_to user_path(Current.user.id), class: "nav-link" do %>
+                <i class="fa-solid fa-house"></i>  Home
               <% end %>
-            </ul>
-          </div>
+            </li>
+            <li class="nav-item">
+              <%= link_to users_path, class: "nav-link" do %>
+                <i class="fa-solid fa-users"></i>  Users
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to books_path, class: "nav-link" do %>
+                <i class="fa-solid fa-book-open"></i>  Books
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to session_path,data: { turbo_method: :delete },class: "nav-link" do %>
+                <i class="fa-solid fa-right-from-bracket"></i>  Log out
+              <% end %>
+            </li>
+          <% else %>
+            <li class="nav-item">
+              <%= link_to root_path, class: "nav-link" do %>
+                <i class="fa-solid fa-house"></i>  Home
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to about_path, class: "nav-link" do %>
+                <i class="fa-solid fa-link"></i>  About
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to new_user_path, class: "nav-link" do %>
+                <i class="fa-solid fa-user-plus"></i>  Sign up
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to new_session_path, class: "nav-link" do %>
+                <i class="fa-solid fa-right-to-bracket"></i>  Log in
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
 
-          </div>
-          </div>
-        </div>
-      </nav>
+    </div>
+    </div>
+    </div>
+  </nav>
+</header>
