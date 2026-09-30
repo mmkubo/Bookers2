@@ -21,19 +21,14 @@ before_action :ensure_correct_user, only: [:edit, :update, :destroy]
     @books = Book.all
     @user = Current.user
     @book = Book.new
-    @book_comment = BookComment.new #コメント
-
   end
 
   def show
-    @book = Book.new #投稿フォーム
-    @user = @book_detail.user #BOOKの投稿者の情報全部
-    @book_comment = BookComment.new #コメント
+    @book_comment = BookComment.new
   end
 
   def edit
-    @user = @book.user
-    end
+  end
 
   def update
     if @book.update(book_params)
