@@ -4,7 +4,9 @@
 
 <h1>Follow Users</h1>
 
-<%= render 'list', users: @users %>
+  <% if users.empty? %>
+    <p>ユーザーはいません</p>
+  <% else %>
 
 </div>
 </div>
