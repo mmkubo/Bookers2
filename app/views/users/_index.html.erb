@@ -1,21 +1,20 @@
-  <table class="table">
-
+<table class="table">
+  <thead>
     <tr>
       <th>image</th>
       <th>name</th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th colspan="3"></th>
     </tr>
-
-      <% @users.each do |user| %>
+  </thead>
+  <tbody>
+    <% users.each do |user| %>
       <tr>
-        <td><%= image_tag user.get_profile_image, size: "50x50", class: "border" %></td>
+        <td><%= image_tag user.get_profile_image(50,50), class: "border" %></td>
         <td><%= user.name %></td>
         <td>フォロー数: <%= user.followings.count %></td>
         <td>フォロワー: <%= user.followers.count %></td>
-        <td><%= link_to "Show", user_path(user) %></td>
+        <td><%= link_to "Show", user %></td>
       </tr>
-      <% end %>
-  <% end %>
-  </table>
+    <% end %>
+  </tbody>
+</table>
