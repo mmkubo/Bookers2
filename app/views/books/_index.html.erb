@@ -9,21 +9,21 @@
     </tr>
   </thead>
   <tbody>
-    <% @books.each do |book| %>
+    <% books.each do |book| %>
       <tr>
         <td>
-          <%= link_to user_path(book.user) do %>
-            <%= image_tag book.user.get_profile_image, size: "85x85", class: "border" %>
+          <%= link_to (book.user) do %>
+            <%= image_tag book.user.get_profile_image(85,85), class: "border" %>
           <% end %>
         </td>
-        <td><%= link_to book.title, book_path(book) %></td>
+        <td><%= link_to book.title, book %></td>
         <td><%= book.body %></td>
         <td>
           <%= turbo_frame_tag dom_id(book, :favorite) do %>
             <%= render "favorites/favorite_btn", book: book %>
           <% end %>
         </td>
-        <td><render "book_comments/counter", book: book %></td>
+        <td><%= render "book_comments/counter", book: book %></td>
       </tr>
     <% end %>
   </tbody>
