@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get "search", to: "searches#search"
 
   resources :users, only: [:new, :create, :index, :show, :edit, :update, :destroy], path_names: { new: "sign_up" } do
-    resource :relationship, only: [:create, :destroy]
+    resource :relationships, only: [:create, :destroy]
     member do 
       get :following
       get :followers
@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   resources :passwords, param: :token
 
   resources :books, only: [:create, :index ,:show, :edit, :update, :destroy] do
-    resource :favorite, only: [:create, :destroy]
+    resource :favorites, only: [:create, :destroy]
     resources :book_comments, only: [:create, :destroy]
   end
 

@@ -1,15 +1,12 @@
-<%= turbo_frame_tag dom_id(book, :favorite) do %>
-
 <% if book.favorited_by?(Current.user) %>
-  <%= link_to book_favorite_path(book), data: { turbo_method: :delete },style: "color: #e16162;" do %>
+  <%= link_to book_favorites_path(book), data: { turbo_method: :delete, turbo_stream: true },style: "color: #e16162;" do %>
   ♥<%= book.favorites.count %>
   <% end %>
 <% else %>
-  <%= link_to book_favorite_path(book), data: { turbo_method: :post },style: "color: #90b4ce" do %>
+  <%= link_to book_favorites_path(book), data: { turbo_method: :post, turbo_stream: true },style: "color: #90b4ce" do %>
   ♥<%= book.favorites.count %>
   <% end %>
 <% end %>
 
-<% end %>
 
 
