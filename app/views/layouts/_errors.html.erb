@@ -1,21 +1,10 @@
-<% if @book && @book.errors.any? %>
-    <div id="error_explanation">
-      <h3><%= pluralize(@book.errors.count, "error") %> prohibited this book from being saved:</h3>
-      <ul>
-        <% @book.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-     </div>
-  <% end %>
-
-    <% if @book_comment && @book_comment.errors.any? %>
-    <div id="error_explanation">
-      <h3><%= pluralize(@book_comment.errors.count, "error") %> prohibited this comment from being saved:</h3>
-      <ul>
-        <% @book_comment.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-     </div>
-  <% end %>
+<% if object.errors.any? %>
+  <div id="error_explanation">
+    <h3><%= pluralize(object.errors.count, "error") %> prohibited this <%= obj.class.model_name.human.downcase %> from being saved:</h3>
+    <ul>
+      <% obj.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
