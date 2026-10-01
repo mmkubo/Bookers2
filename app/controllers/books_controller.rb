@@ -1,30 +1,24 @@
 class BooksController < ApplicationController
-before_action :set_book, only: [:show, :edit, :update, :destroy]
-before_action :ensure_correct_user, only: [:edit, :update, :destroy]
-
-  def create
-    @book = Book.new(book_params)
-    @books = Book.all
-    @book.user_id = Current.user.id
-    if @book.save
-      redirect_to book_path(@book), notice: "You have created book successfully." 
-      #登録完了後、bookdetailへ
-    else
-      @users = User.all
-      @user = Current.user
-      render :index, status: :unprocessable_entity
-      #エラー後、books画面へ
-    end
-  end
+  before_action :set_book, only: [:show, :edit, :update, :destroy]
+  before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
   def index
     @books = Book.all
-    @user = Current.user
     @book = Book.new
   end
 
   def show
     @book_comment = BookComment.new
+  end
+
+  def create
+    @book = Current.user.books.new(book_params)
+    if @book.save
+      redirect_to book_path(@book), notice: "You have created book successfully." 
+    else
+      @books = Book.all
+      render :index, status: :unprocessable_entity
+    end
   end
 
   def edit
@@ -36,7 +30,6 @@ before_action :ensure_correct_user, only: [:edit, :update, :destroy]
       #登録完了後、bookdetailへ
     else
       render :edit, status: :unprocessable_entity
-      #エラー後、登録画面へ
     end
   end
 
@@ -45,10 +38,9 @@ before_action :ensure_correct_user, only: [:edit, :update, :destroy]
       redirect_to books_path
     else
       @books = Book.all
-      render :index, status: :unprocessable_entity #失敗したらindexの戻す。ために、@booksが必要
+      render :index, status: :unprocessable_entity 
     end
   end
-
 
   private
 

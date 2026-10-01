@@ -1,16 +1,25 @@
 class FavoritesController < ApplicationController
+  before_action :set_book, only: [:create, :destroy]
+
   def create
-    @book = Book.find(params[:book_id])
-    favorite = Current.user.favorites.new(book_id: @book.id)
-    favorite.save
-    #redirect_back(fallback_location: books_path) #直前に戻る、履歴がなければindexへ戻る
+    @favorite = Current.user.favorites.new(book_id: @book.id)
+    @favorite.save
+    respond_to do |format|
+      format.turbo_stream
+      format.html{redirect_back(fallback_location: books_path)}
   end
 
   def destroy
+    @favorite = Current.user.favorites.find_by(book_id: @book.id)
+    @favorite&.destroy
+    respond_to do |format|
+      format.turbo_stream
+      format.html{redirect_back(fallback_location: books_path)}
+  end
+
+  private
+
+  def set_book
     @book = Book.find(params[:book_id])
-    favorite = Current.user.favorites.find_by(book_id: @book.id)
-    favorite&.destroy
-    #redirect_back(fallback_location: books_path) #直前に戻る、履歴がなければindexへ戻る
   end
 end
-

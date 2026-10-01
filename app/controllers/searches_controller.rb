@@ -5,7 +5,6 @@ class SearchesController < ApplicationController
     @target = params[:target] #選択された探す対象
     @word = params[:word] #検索窓に入力された文字
     @search = params[:search] #選択された検索方法
-
     if @target == "User"
       @users = User.looks(@search, @word)
     else
