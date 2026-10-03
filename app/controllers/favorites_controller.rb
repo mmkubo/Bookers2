@@ -7,6 +7,7 @@ class FavoritesController < ApplicationController
     respond_to do |format|
       format.turbo_stream
       format.html{redirect_back(fallback_location: books_path)}
+    end
   end
 
   def destroy
@@ -15,6 +16,7 @@ class FavoritesController < ApplicationController
     respond_to do |format|
       format.turbo_stream
       format.html{redirect_back(fallback_location: books_path)}
+    end
   end
 
   private

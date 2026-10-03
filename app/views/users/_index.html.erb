@@ -9,7 +9,7 @@
   <tbody>
     <% users.each do |user| %>
       <tr>
-        <td><%= image_tag user.get_profile_image(50,50), class: "border" %></td>
+        <td><%= image_tag user.get_profile_image(70,70), class: "border" %></td>
         <td><%= user.name %></td>
         <td>フォロー数: <%= user.followings.count %></td>
         <td>フォロワー: <%= user.followers.count %></td>

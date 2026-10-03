@@ -1,5 +1,5 @@
 <table class='table user_info_table'>
-  <tr><%= image_tag user.get_profile_image(100,100), class: 'border' %></tr>
+  <tr><%= image_tag user.get_profile_image(150,150), class: 'border' %></tr>
   <tr>
     <th>name</th>
     <th><%= user.name %></th>
@@ -24,7 +24,7 @@
       <i class="fa-solid fa-user-gear"></i>
     <% end %>
   <% else %>
-    <%= render 'relationships/btn', user :user %>
+    <%= render 'relationships/btn', user: user %>
   <% end %>
 </div>
 

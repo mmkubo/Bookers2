@@ -1,32 +1,15 @@
 <div class="container px-5 mt-3">
-<div class="row">
-<div class="col-12 px-5 px-sm-0 mx-auto">
+  <div class="row">
+    <div class="col-12 px-5 px-sm-0 mx-auto">
 
-  <% if @target == "User" %> 
-    <h1>Users search for "<%= @word %>"</h1>
-      <table class="table">
-        <tr>
-          <th></th>
-          <th>Name</th>
-          <th></th>
-          <th></th>
-        </tr>
-        <% @users.each do |user| %>
-          <tr>
-            <td><%= image_tag user.get_profile_image, size: "50x50", class: "border" %></td>
-            <td><%= link_to user.name, user_path(user) %></td>
-            <td>フォロー数: <%= user.followings.count %></td>
-            <td>フォロワー: <%= user.followers.count %></td>
-          </tr>
-        <% end %>
-      </table>
-    <% end %>
+      <% if @target == "User" %> 
+        <h1>Users search for "<%= @word %>"</h1>
+        <%= render 'users/index', users: @users %>
+      <% elsif @target == "Book" %> 
+        <h1>Books search for "<%= @word %>"</h1>
+        <%= render 'books/index', books: @books %>
+      <% end %>
 
-    <% if @target == "Book" %> 
-      <h1>Books search for "<%= @word %>"</h1>
-        <%= render 'books/index' books: @books %>
-    <% end %>
-
-</div>
-</div>
+    </div>
+  </div>
 </div>

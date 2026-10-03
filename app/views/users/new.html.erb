@@ -5,7 +5,7 @@
       <h2>Sign up</h2>
       
       <%= form_with model: @user,ulr: users_path do |f| %>
-        <%= render 'layouts/error', obj: f.object %>
+        <%= render 'layouts/errors', obj: f.object %>
           <div class="field">
             <%= f.label :name %><br>
             <%= f.text_field :name, autofocus: true %>

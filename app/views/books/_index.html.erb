@@ -13,13 +13,13 @@
       <tr>
         <td>
           <%= link_to (book.user) do %>
-            <%= image_tag book.user.get_profile_image(85,85), class: "border" %>
+            <%= image_tag book.user.get_profile_image(70,70), class: "border" %>
           <% end %>
         </td>
         <td><%= link_to book.title, book %></td>
         <td><%= book.body %></td>
         <td>
-          <%= turbo_frame_tag dom_id(book, :favorite) do %>
+          <%= turbo_frame_tag dom_id(book, :favorites) do %>
             <%= render "favorites/favorite_btn", book: book %>
           <% end %>
         </td>

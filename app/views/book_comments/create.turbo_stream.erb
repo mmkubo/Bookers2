@@ -1,6 +1,8 @@
-
-<%= turbo_stream.replace "comment-index" do %>
-  <%= render "book_comments/index", book_detail: @book_detail %>
+<%= turbo_stream.update "book-comments-index" do %>
+  <%= render "book_comments/index", book: @book %>
 <% end %>
 
+<%= turbo_stream.update "book-comments-form" do %>
+  <%= render "book_comments/form", book: @book, book_comment: @book_comment %>
+<% end %>
 
