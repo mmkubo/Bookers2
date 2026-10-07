@@ -3,7 +3,7 @@ class BooksController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
   def index
-    @books = Book.all
+    @books = Book.all.sort_by{|book| book.popularity_sort_key}.reverse
     @book = Book.new
   end
 

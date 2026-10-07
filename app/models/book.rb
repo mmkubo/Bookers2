@@ -24,5 +24,12 @@ class Book < ApplicationRecord
     end
   end
 
+  def weekly_favorite_count
+    favorites.where(created_at: 7.days.ago..).count
+  end
+
+  def popularity_sort_key
+    [weekly_favorite_count, favorites.count]
+  end
   
 end
