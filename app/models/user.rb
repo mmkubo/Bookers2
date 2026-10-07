@@ -54,6 +54,10 @@ class User < ApplicationRecord
   def following?(other_user)
     active_relationships.exists?(followed_id: other_user.id)
   end
+# 相互フォローしているか判定する
+  def mutual_following?(other_user)
+    following?(other_user) && other_user.following?(self)
+  end
 
   def self.looks(search, word)
     if search == "perfect" #完全一致

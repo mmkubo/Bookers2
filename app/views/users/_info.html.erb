@@ -25,6 +25,9 @@
     <% end %>
   <% else %>
     <%= render 'relationships/btn', user: user %>
+    <% if Current.user.mutual_following?(user) %>
+     <%= link_to "チャットを始める", rooms_path(other_id: user.id), data: { turbo_method: :post } %>
+    <% end %>
   <% end %>
 </div>
 
