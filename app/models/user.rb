@@ -18,6 +18,10 @@ class User < ApplicationRecord
   #フォロー中の人(followed_id側)を呼び出す
   has_many :followings, through: :active_relationships, source: :followed
 
+  has_many :entries, dependent: :destroy
+  has_many :rooms, through: :entries
+  has_many :messages, dependent: :destroy
+
   normalizes :email_address, with: ->(e) { e.strip.downcase }
 
   has_one_attached :profile_image
