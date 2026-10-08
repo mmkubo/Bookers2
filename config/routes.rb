@@ -20,7 +20,9 @@ Rails.application.routes.draw do
     resources :book_comments, only: [:create, :destroy]
   end
 
-  resources :rooms, only: [:create, :show]
+  resources :rooms, only: [:create, :show] do
+    resources :messages, only: [:create]
+  end
 
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

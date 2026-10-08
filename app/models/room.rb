@@ -3,4 +3,7 @@ class Room < ApplicationRecord
   has_many :users, through: :entries
   has_many :messages, dependent: :destroyend
 
+  def other_user(current_user)
+    users.where.not(id: current_user.id).first
+  end
 end

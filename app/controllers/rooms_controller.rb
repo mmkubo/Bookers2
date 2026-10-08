@@ -13,4 +13,10 @@ class RoomsController < ApplicationController
       redirect_to room
     end
   end
+
+  def show
+    @room = Room.find(params[:id])
+    @messages = @room.messages
+    @message = Message.new
+  end
 end
