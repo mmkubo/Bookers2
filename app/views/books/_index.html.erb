@@ -6,6 +6,7 @@
       <th>Opinion</th>
       <th></th>
       <th></th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -24,6 +25,7 @@
           <% end %>
         </td>
         <td><%= render "book_comments/counter", book: book %></td>
+        <td>閲覧数: <%= book.view_count %></td>
       </tr>
     <% end %>
   </tbody>

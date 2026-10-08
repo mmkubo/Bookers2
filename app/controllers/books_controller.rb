@@ -9,6 +9,7 @@ class BooksController < ApplicationController
 
   def show
     @book_comment = BookComment.new
+    @book.increment!(:view_count)
   end
 
   def create
