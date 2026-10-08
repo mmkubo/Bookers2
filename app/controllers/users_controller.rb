@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   allow_unauthenticated_access only: [:new, :create] 
-  before_action :set_user, only: [:show, :edit, :update]  
+  before_action :set_user, only: [:show, :edit, :update,:following, :followers]  
   before_action :ensure_correct_user, only: [:edit, :update]
 
   def new

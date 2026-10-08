@@ -1,4 +1,37 @@
-<h1><%= @room.other_user(Current.user).name %> さんのとチャット</h1>
+<div class="container px-5 mt-3">
+  <div class="row">
+    <div class="col-6 px-5 px-sm-0">
 
-<% @messages.each do |message| %>
+      <%= render 'layouts/errors', obj: @message %>
+      <h2><%= @room.other_user(Current.user).name %> さんとのチャット</h2>
+
+      <% @messages.each do |message| %>
+        <% if message.user == Current.user %>
+          <div class="mt-2 text-end">
+            <div><%= message.user.name %></div>
+            <div class="d-inline-block text-start"><%= message.body %></div>
+          </div>
+        <% else %>
+          <div class="mt-2">
+            <div><%= message.user.name %></div>
+            <div><%= message.body %></div>
+          </div>
+        <% end %>
+      <% end %>
+
+      <div class="d-grid mt-4">
+        <%= form_with(model:[@room, @message]) do |f| %>
+          <%= f.text_area :body, rows:'3', class: "w-100 comment-textarea" %>
+          <div>
+            <%= f.submit "送信する", class: "btn btn-primary btn-base-1 mt-20" %>
+          </div>
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
 
