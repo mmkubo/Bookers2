@@ -1,4 +1,6 @@
 class RoomsController < ApplicationController
+  before_action :set_room, only: [:show]
+  before_action :ensure_room_member, only: [:show]
 
   def create
     other_user = User.find(params[:other_id])
@@ -15,8 +17,20 @@ class RoomsController < ApplicationController
   end
 
   def show
-    @room = Room.find(params[:id])
     @messages = @room.messages
     @message = Message.new
   end
+
+  private
+
+  def set_room
+    @room = Room.find(params[:id])
+  end
+
+  def ensure_room_member
+    unless @room.users.include?(Current.user)
+    redirect_to user_path(Current.user.id)
+    end
+  end
 end
+
